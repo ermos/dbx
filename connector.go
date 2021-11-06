@@ -16,10 +16,10 @@ type database struct {
 var databases []database
 
 // Create a new connector for instanciate easily database connection
-func New (ctx context.Context, dbName string, driver string, user string, password string, host string, port string) error {
+func New (ctx context.Context, dbName string, driver string, user string, password string, host string, port string, params string) error {
 	dataSourceName := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?parseTime=true",
-		user, password, host, port, dbName,
+		"%s:%s@tcp(%s:%s)/%s%s",
+		user, password, host, port, dbName, params,
 	)
 
 	db, err := sqlx.ConnectContext(ctx, driver, dataSourceName)
