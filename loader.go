@@ -18,6 +18,7 @@ type databaseReader struct {
 	Port		string	`json:"port"`
 	User 		string	`json:"user"`
 	Password 	string	`json:"password"`
+	Params 		string 	`json:"params"`
 }
 
 // Load all database schema contain in a folder
@@ -60,7 +61,7 @@ func _loadDatabase (ctx context.Context, file string) {
 		log.Fatal(err)
 	}
 
-	err = New(ctx, dr.Name, dr.Driver, dr.User, dr.Password, dr.Host, dr.Port)
+	err = New(ctx, dr.Name, dr.Driver, dr.User, dr.Password, dr.Host, dr.Port, dr.Params)
 	if err != nil {
 		log.Fatal(err)
 	}
